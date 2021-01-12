@@ -15,3 +15,18 @@
 </table>
 <hr>
 <button (click)="testCheck()">Click me</button>
+<hr>
+<table>
+    <thead>
+        <tr>            
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let g of genres">            
+            <td>{{g.genreName}}</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<button (click)="genreTest()">Click me</button>
