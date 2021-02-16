@@ -16,19 +16,20 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
+
 @Entity
-@Table(name="genre")
+@Table(name = "genre")
 @Data
 public class Genre {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id; // points to story pitch
-	@Column(name="genre_name")
-	private String genreName;
-	
-	@ManyToMany(mappedBy= "genres", cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Set<Editor> editors = new HashSet<>();	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // points to story pitch
+    @Column(name = "genre_name")
+    private String genreName;
+
+    @ManyToMany(mappedBy = "genres", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private Set<Editor> editors = new HashSet<>();
 
 }

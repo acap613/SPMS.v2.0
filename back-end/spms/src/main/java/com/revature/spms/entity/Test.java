@@ -7,16 +7,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="test")
+@Table(name = "test")
 @Data
 public class Test {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private Long id;
-	
-	@Column(name="name")
-	private String name;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
 }

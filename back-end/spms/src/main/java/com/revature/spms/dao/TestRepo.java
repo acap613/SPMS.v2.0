@@ -8,6 +8,6 @@ import com.revature.spms.entity.Test;
 
 
 @Repository
-public interface TestRepo extends JpaRepository<Test, Long>{
+public interface TestRepo extends JpaRepository<Test, Long> {
 
 }

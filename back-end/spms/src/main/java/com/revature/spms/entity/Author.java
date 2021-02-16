@@ -15,33 +15,33 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="AUTHOR")
+@Table(name = "AUTHOR")
 @Data
 public class Author {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name="first_name")
-	private String first_name;
-	
-	@Column(name="last_name")
-	private String last_name;
-	
-	@Column(name="current_points")
-	private int current_points;
-	
-	@Column(name="max_points")
-	private int maxPoints;
-	
-	@Column(name="email")
-	private String email;
-	
 
-	@OneToMany(targetEntity = StoryPitch.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "author_id", referencedColumnName = "id")
-	private List<StoryPitch> storyPitches;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name")
+    private String first_name;
+
+    @Column(name = "last_name")
+    private String last_name;
+
+    @Column(name = "current_points")
+    private int current_points;
+
+    @Column(name = "max_points")
+    private int maxPoints;
+
+    @Column(name = "email")
+    private String email;
+
+
+    @OneToMany(targetEntity = StoryPitch.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private List<StoryPitch> storyPitches;
+
 
 }

@@ -8,6 +8,6 @@ import com.revature.spms.entity.Editor;
 
 @CrossOrigin("http://localhost:4200")
 @Repository
-public interface EditorRepo extends JpaRepository<Editor, Long>{
+public interface EditorRepo extends JpaRepository<Editor, Long> {
 
 }
