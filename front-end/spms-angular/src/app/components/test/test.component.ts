@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Genre } from 'src/app/models/genre';
 import { Test } from 'src/app/models/test';
 import { GenreService } from 'src/app/services/genre.service';
@@ -17,6 +18,7 @@ export class TestComponent implements OnInit {
   genres: Genre[];
 
   constructor(private service: TestService,
+              private router: Router,
               private genreService: GenreService) { }
 
   ngOnInit(): void {
@@ -38,6 +40,15 @@ export class TestComponent implements OnInit {
         this.genres = data;
       }
     )
+  }
+
+  addPitch(){
+    console.log('button pressed');
+    this.router.navigate(['form']);
+  }
+
+  viewPitches(){
+    this.router.navigate(['list']);
   }
 
 }

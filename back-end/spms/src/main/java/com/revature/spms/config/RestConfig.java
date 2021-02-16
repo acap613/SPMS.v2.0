@@ -1,9 +1,9 @@
 package com.revature.spms.config;
 
-import com.revature.spms.entity.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
 
 import javax.persistence.EntityManager;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Configuration
-public class RestConfig {
+public class RestConfig implements RepositoryRestConfigurer {
 
     private EntityManager entityManager;
 
@@ -28,10 +28,10 @@ public class RestConfig {
         HttpMethod[] theUnsupportedActions = {HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT};
 
         // Disable HTTP methods for Products: PUT, POST, DELETE
-        config.getExposureConfiguration()
-                .forDomainType(Test.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+//        config.getExposureConfiguration()
+//                .forDomainType(Test.class)
+//                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+//                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 
         // Disable HTTP methods for ProductCategory: PUT, POST, DELETE
        /* config.getExposureConfiguration()

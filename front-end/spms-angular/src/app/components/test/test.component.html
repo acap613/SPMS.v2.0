@@ -24,9 +24,14 @@
     </thead>
     <tbody>
         <tr *ngFor="let g of genres">            
-            <td>{{g.genreName}}</td>
+            <td>{{g.genreName}}</td>           
         </tr>
     </tbody>
 </table>
 <hr>
-<button (click)="genreTest()">Click me</button>
+<button (click)="genreTest()">See Genres</button>
+<hr>
+<button (click)="addPitch()" class="btn btn-primary">Add New Story Pitch</button>
+<hr>
+<button (click)="viewPitches()" class="btn btn-primary">View Story Pitches</button>
+
