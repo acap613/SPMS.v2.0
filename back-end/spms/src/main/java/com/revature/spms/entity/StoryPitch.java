@@ -1,15 +1,9 @@
 package com.revature.spms.entity;
 
-import java.sql.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.Data;
+
+import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "story_pitch")
@@ -46,6 +40,9 @@ public class StoryPitch {
 
     @Column(name = "word_count")
     private int wordCount;
+
+    @Column(name="points")
+    private int points;
 
     @Column(name = "approved")
     private char approved;

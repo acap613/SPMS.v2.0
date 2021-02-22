@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Genre } from 'src/app/models/genre';
 import { StoryPitch } from 'src/app/models/story-pitch';
 import { StoryType } from 'src/app/models/story-type';
+import { GenreService } from 'src/app/services/genre.service';
 import { StoryPitchFormService } from 'src/app/services/story-pitch-form.service';
 
 @Component({
@@ -12,14 +14,14 @@ import { StoryPitchFormService } from 'src/app/services/story-pitch-form.service
   styleUrls: ['./story-pitch-form.component.css']
 })
 export class StoryPitchFormComponent implements OnInit {
-
+     
      id: number;
      authorId: number;
      title: string;
      genre: Genre;
      tag: string;
      description: string;
-     wordCount: number;
+     points:number;
      dateCreated: Date;
      lastUpdated: Date;
      completionDate: Date;
@@ -32,11 +34,12 @@ export class StoryPitchFormComponent implements OnInit {
   genres: Genre[];
 
    message = 'Select';
-  pointValueSelected = 'No word count selected';
+  pointValueSelected = 0;
+  
   // genreSelected = new FormControl();
 
   forWordCount = [
-    { noWords: '--Select Word Count (approx.)---', pointValue: 'please select a valid word count' },
+    { noWords: '--Select Word Count (approx.)---', pointValue: 0},
     { noWords: '50,000+', pointValue: 50},
     { noWords: '20,000-49,999', pointValue: 25},
     { noWords: '2,000-19,999', pointValue: 10},
@@ -62,6 +65,7 @@ export class StoryPitchFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private service: StoryPitchFormService,
+    private genreService: GenreService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -70,14 +74,17 @@ export class StoryPitchFormComponent implements OnInit {
   ngOnInit(): void {
     this.pitch = new StoryPitch(this.id, this.authorId, this.title,
                                 this.genre, this.tag, this.description,
-                                this.wordCount, this.dateCreated, this.lastUpdated,
+                                this.points, new Date(), this.lastUpdated,
                                 this.completionDate, 'N', 'N',
                                 'N', this.storyType);
+   
+    this.generateGenreList();
   }
 
   saveStoryPitchForm() {
     console.log("submit button pressed");
-    console.log("Starting new form...")
+    console.log("Starting new form...");
+    console.log("testing points saved: " + this.points)
     this.service.createPitch(this.pitch).subscribe(
       data => {
         console.log(data);
@@ -102,13 +109,28 @@ export class StoryPitchFormComponent implements OnInit {
 
   selectPointsByWordCount(event: any) {
     this.pointValueSelected = event.target.value;
+    this.pitch.points = parseInt(event.target.value);
+    console.log("points set at " + (this.pitch.points));
+
+    
   }
 
-  selectGenre(event: any){
-   
-    this.genre = event.target.value;
-    
+  // setPointsValue(pointsValue: number){
+  //   this.points = pointsValue;
+  // }
+
+  selectGenre(event: any){    
+    this.genre = event.target.value;    
     console.log(this.genre);
+  }
+
+  generateGenreList(){
+    this.genreService.getGenreList().subscribe(
+      data => {
+        console.log(data);
+        this.genres = data;
+      }
+    )
   }
 
   selectDate(event) {

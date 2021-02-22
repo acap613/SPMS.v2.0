@@ -9,10 +9,10 @@
     <table class="table">    
         <thead>
             <tr>                
-                <th>Story Pitch</th>                
-                <th>Target Date</th>
-                <th>Word Count</th>
-                <th>Completed</th>
+                <th>Story Pitch</th>   
+                <th>Date Created</th>             
+                <th>Approx Finish Date</th>
+                <th>Point Cost</th>                
                 <th>Genre</th>
                 <th>Tag</th>
                 <th>Description</th>
@@ -26,9 +26,9 @@
             <tr *ngFor="let pitch of pitches">
                
                 <td>{{pitch.title}}</td>
+                <td>{{pitch.dateCreated}}</td>
                 <td>{{pitch.completionDate | date}}</td>
-                <td>{{pitch.wordCount}}</td>
-                <td>{{pitch.completed}}</td>
+                <td>{{pitch.points}}</td>                
                 <td>{{pitch.genre}}</td>
                 <td>{{pitch.tag}}</td>
                 <td>{{pitch.description}}</td>

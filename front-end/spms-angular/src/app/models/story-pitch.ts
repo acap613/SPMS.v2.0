@@ -9,7 +9,7 @@ export class StoryPitch {
     public genre: Genre,
     public tag: string,
     public description: string,
-    public wordCount: number,
+    public points: number,
     public dateCreated: Date,
     public lastUpdated: Date,
     public completionDate: Date,
