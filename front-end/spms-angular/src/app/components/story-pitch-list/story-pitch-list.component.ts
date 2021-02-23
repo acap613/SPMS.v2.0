@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StoryPitch } from 'src/app/models/story-pitch';
 import { StoryPitchService } from '../../services/story-pitch.service';
 
@@ -11,10 +11,12 @@ import { StoryPitchService } from '../../services/story-pitch.service';
 export class StoryPitchListComponent implements OnInit {
 
   pitches: StoryPitch[];
+  pitch: StoryPitch;
   message: string;
   constructor(
     // data service and router in here
     private service: StoryPitchService,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 

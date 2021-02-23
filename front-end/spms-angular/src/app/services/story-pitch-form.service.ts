@@ -16,15 +16,21 @@ export class StoryPitchFormService {
   }
 
   deletePitch(id){
+    console.log("hahaha! new delete!")
     return this.http.delete(`${STORY_PITCH_API_URL}/story-pitch/delete/${id}`);
   }
 
-  retrievePitch(username, id){
-    return this.http.get<StoryPitch>(`${STORY_PITCH_API_URL}/author/${username}/pitch/${id}`);
+  retrievePitch(id){
+    return this.http.get<StoryPitch>(`${STORY_PITCH_API_URL}/storyPitches/${id}`);
   }
 
-  updatePitch(author_id, book_id, pitch){
-    return this.http.put(`${STORY_PITCH_API_URL}/author/${author_id}/edit/${book_id}`, pitch);
+  // updatePitch(author_id, book_id, pitch){
+  //   return this.http.put(`${STORY_PITCH_API_URL}/author/${author_id}/edit/${book_id}`, pitch);
+  // } 
+
+  updatePitch(book_id, pitch){
+    console.log("update called")
+    return this.http.put(`${STORY_PITCH_API_URL}/story-pitch/edit/${book_id}`, pitch);
   } 
 
   createPitch(pitch){

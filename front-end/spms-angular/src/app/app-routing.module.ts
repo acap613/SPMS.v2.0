@@ -8,6 +8,7 @@ import { TestComponent } from './components/test/test.component';
 const routes: Routes = [
   { path: '', component: TestComponent },
   { path: 'form', component: StoryPitchFormComponent },
+  { path: 'form/:id', component: StoryPitchFormComponent },
   { path: 'list', component: StoryPitchListComponent }
 ];
 

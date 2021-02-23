@@ -72,25 +72,37 @@ export class StoryPitchFormComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
     this.pitch = new StoryPitch(this.id, this.authorId, this.title,
                                 this.genre, this.tag, this.description,
                                 this.points, new Date(), this.lastUpdated,
                                 this.completionDate, 'N', 'N',
                                 'N', this.storyType);
-   
+    if(this.id == -1){
+      this.service.retrievePitch(this.id).subscribe(
+        data => this.pitch = data
+      );
+    }
     this.generateGenreList();
   }
 
   saveStoryPitchForm() {
     console.log("submit button pressed");
-    console.log("Starting new form...");
-    console.log("testing points saved: " + this.points)
-    this.service.createPitch(this.pitch).subscribe(
-      data => {
-        console.log(data);
-        this.router.navigate(['list']);
-      }
-    );
+    console.log("Starting new form...");    
+    if(this.pitch.id == -1) {
+      this.service.createPitch(this.pitch).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['list']);
+        }
+      );
+    } else {
+        this.service.updatePitch(this.id, this.pitch).subscribe(
+            data => {
+              this.router.navigate(['list']);
+            }
+        )
+      }    
   //  if(this.book_id == -1){
   //     console.log("Starting new form...")
   //     this.service.createPitch(this.pitch).subscribe(

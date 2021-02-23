@@ -19,6 +19,10 @@ export class StoryPitchService {
     );
   }
 
+  getStoryPitch(pitchID){
+    return this.http.get<GetStoryPitch>(`${STORY_PITCH_API_URL}/storypitches/${pitchID}`)
+  }
+
   // getGenreList():Observable<Genre[]>{
   //   return this.http.get<GetGenreList>(this.genreUrl).pipe(
   //     map(response => response._embedded.genres)
@@ -29,7 +33,7 @@ export class StoryPitchService {
     return this.http.delete(`${STORY_PITCH_API_URL}/story-pitch/delete/${id}`);
   }
 
-  updatePitch( id, pitch){
+  updatePitch(id, pitch){
     return this.http.put(`${STORY_PITCH_API_URL}/editor/edit/${id}`, pitch);
   }
 
@@ -48,5 +52,11 @@ export class StoryPitchService {
 interface GetStoryPitchList {
   _embedded: {
     storyPitches: StoryPitch[];
+  }
+}
+
+interface GetStoryPitch {
+  _embedded: {
+    storyPitch: StoryPitch;
   }
 }
